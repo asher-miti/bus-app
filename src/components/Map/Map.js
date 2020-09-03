@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
-
 import mapStyles from "./mapStyles";
+import "./Map.css";
 
+// Map settings
 const libraries = ["places"];
 const mapContainerStyle = {
   width: "85vw",
@@ -25,6 +26,8 @@ export default function Map() {
     libraries,
   });
 
+  const [markers, setMarkers] = useState([]);
+
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading page";
 
@@ -41,7 +44,16 @@ export default function Map() {
         zoom={12}
         center={center}
         options={options}
-        onClick={() => {}}
+        onClick={(event) => {
+          setMarkers((current) => [
+            ...current,
+            {
+              lat: event.latLng.lat(),
+              lng: event.latLng.lng(),
+              time: new Date(),
+            },
+          ]);
+        }}
       ></GoogleMap>
     </div>
   );
