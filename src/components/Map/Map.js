@@ -12,9 +12,8 @@ const mapContainerStyle = {
 
 const center = {
   lat: 51.507351,
-  lng: -0.127758,
+  lng: -0.122670,
 };
-
 
 export default function Map() {
   const { isLoaded, loadError } = useLoadScript({
@@ -40,6 +39,13 @@ export default function Map() {
     mapRef.current = map
   }, [])
 
+  // Map zooms to location on search click
+  const panTo = useCallback(({lat,lng}) => {
+    mapRef.current.panTo({lat,lng})
+    mapRef.current.setZoom(18)
+
+  }, [])
+
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading page";
 
@@ -52,7 +58,7 @@ export default function Map() {
         </span>
       </h2>
 
-      <Search />
+      <Search panTo={panTo} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
