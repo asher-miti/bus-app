@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
-// import mapStyles from "./mapStyles";
+import Search from '../Search/Search'
 
 // Map settings
 const libraries = ["places"];
@@ -15,9 +15,6 @@ const center = {
   lng: -0.127758,
 };
 
-// const options = {
-//   styles: mapStyles,
-// };
 
 export default function Map() {
   const { isLoaded, loadError } = useLoadScript({
@@ -54,6 +51,8 @@ export default function Map() {
           🚌
         </span>
       </h2>
+
+      <Search />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
@@ -70,3 +69,4 @@ export default function Map() {
     </div>
   );
 }
+
