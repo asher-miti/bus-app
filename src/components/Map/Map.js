@@ -1,7 +1,9 @@
 import React, { useState, useCallback, useRef } from "react";
 
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
-import Search from '../Search/Search'
+import Search from "../Search/Search";
+import Locate from "../Locate/Locate";
+import styles from "./Map.module.css";
 
 // Map settings
 const libraries = ["places"];
@@ -12,7 +14,7 @@ const mapContainerStyle = {
 
 const center = {
   lat: 51.507351,
-  lng: -0.122670,
+  lng: -0.12267,
 };
 
 export default function Map() {
@@ -24,34 +26,33 @@ export default function Map() {
   const [markers, setMarkers] = useState([]);
 
   const onMapClick = useCallback((event) => {
-          setMarkers((current) => [
-            ...current,
-            {
-              lat: event.latLng.lat(),
-              lng: event.latLng.lng(),
-              time: new Date(),
-            },
-          ]);
-        }, [])
+    setMarkers((current) => [
+      ...current,
+      {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+        time: new Date(),
+      },
+    ]);
+  }, []);
 
-  const mapRef = useRef()
+  const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
-    mapRef.current = map
-  }, [])
+    mapRef.current = map;
+  }, []);
 
   // Map zooms to location on search click
-  const panTo = useCallback(({lat,lng}) => {
-    mapRef.current.panTo({lat,lng})
-    mapRef.current.setZoom(18)
-
-  }, [])
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(18);
+  }, []);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading page";
 
   return (
     <div>
-      <h2>
+      <h2 className={styles.header}>
         Bus Times{" "}
         <span role="img" aria-label="bus">
           🚌
@@ -59,6 +60,7 @@ export default function Map() {
       </h2>
 
       <Search panTo={panTo} />
+      <Locate panTo={panTo} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
@@ -66,13 +68,10 @@ export default function Map() {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-      {markers.map((marker) => (
-        <Marker
-        key={marker.time.toISOString()}
-        position={{lat: marker.lat, lng:marker.lng}} />
-      ))}
+        {markers.map((marker) => (
+          <Marker key={marker.time.toISOString()} position={{ lat: marker.lat, lng: marker.lng }} />
+        ))}
       </GoogleMap>
     </div>
   );
 }
-
