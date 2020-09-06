@@ -5,6 +5,7 @@ import Search from "../Search/Search";
 import Locate from "../Locate/Locate";
 import styles from "./Map.module.css";
 import Header from "../Ui/Header/Header";
+import Spinner from "../Ui/Spinner/Spinner";
 
 // Map settings
 const libraries = ["places"];
@@ -49,7 +50,7 @@ const Map = () => {
   }, []);
 
   if (loadError) return "Error loading maps";
-  if (!isLoaded) return "Loading page";
+  if (!isLoaded) return <Spinner />;
 
   return (
     <div>
