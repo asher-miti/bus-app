@@ -1,15 +1,16 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import Search from "../Search/Search";
 import Locate from "../Locate/Locate";
 import styles from "./Map.module.css";
+import Header from "../Ui/Header/Header";
 
 // Map settings
 const libraries = ["places"];
 const mapContainerStyle = {
-  width: "85vw",
-  height: "85vh",
+  width: "100vw",
+  height: "100vh",
 };
 
 const center = {
@@ -17,7 +18,7 @@ const center = {
   lng: -0.12267,
 };
 
-export default function Map() {
+const Map = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -52,13 +53,7 @@ export default function Map() {
 
   return (
     <div>
-      <h2 className={styles.header}>
-        Bus Times{" "}
-        <span role="img" aria-label="bus">
-          🚌
-        </span>
-      </h2>
-
+      <Header />
       <Search panTo={panTo} />
       <Locate panTo={panTo} />
       <GoogleMap
@@ -74,4 +69,6 @@ export default function Map() {
       </GoogleMap>
     </div>
   );
-}
+};
+
+export default Map;
