@@ -3,6 +3,7 @@ import React from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 import "@reach/combobox/styles.css";
+import styles from "./Search.module.css";
 
 const Search = ({ panTo }) => {
   const {
@@ -19,7 +20,7 @@ const Search = ({ panTo }) => {
   });
 
   return (
-    <div className="search">
+    <div className={styles.search}>
       <Combobox
         onSelect={async (address) => {
           setValue(address, false);

@@ -3,23 +3,19 @@ import React from "react";
 import compass from "../../images/compass.png";
 import styles from "./Locate.module.css";
 
-const Locate = ({ panTo }) => {
+const Locate = ({ panTo, setLocation }) => {
+  const locate = () => {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude: lat, longitude: lng } }) => {
+        setLocation({ lat, lng });
+        panTo({ lat, lng });
+      },
+      () => null
+    );
+  };
+
   return (
-    <button
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            console.log(position);
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => null
-        );
-      }}
-    >
+    <button className="locate" onClick={locate}>
       <img className={styles.compass} src={compass} alt="compass - locate me" />
     </button>
   );
