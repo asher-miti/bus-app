@@ -17,8 +17,12 @@ const mapContainerStyle = {
   position: "absolute",
   top: "55%",
   right: "50%",
+  borderRadius: "5px",
+  boxShadow: "3px 3px 5px 6px #ccc",
   transform: "translate(50%,-50%)",
 };
+
+// Settings for London on map initial render
 const center = { lat: 51.507351, lng: -0.12267 };
 
 const Map = () => {
@@ -67,6 +71,7 @@ const Map = () => {
 
   const [markers, setMarkers] = useState([]);
 
+  // Toggle pop up info window for each bus stop
   const [selectedCenter, setSelectedCenter] = useState(null);
 
   const onMapClick = useCallback((event) => {
@@ -89,7 +94,7 @@ const Map = () => {
   if (!isLoaded) return <Spinner />;
 
   return (
-    <div>
+    <div className="container">
       <Header />
       <Search panTo={panTo} />
       <Locate panTo={panTo} setLocation={setLocation} />
@@ -104,6 +109,9 @@ const Map = () => {
           <Marker
             key={marker.time.toISOString()}
             position={{ lat: marker.lat, lng: marker.lng }}
+            icon={{
+              url: "https://img.icons8.com/emoji/48/000000/round-pushpin-emoji.png",
+            }}
             onClick={() => {
               setSelectedCenter(marker);
             }}
@@ -111,20 +119,15 @@ const Map = () => {
         ))}
         {selectedCenter && (
           <InfoWindow
-            onCloseClick={() => {
-              setSelectedCenter(null);
-            }}
             position={{
               lat: selectedCenter.latitude,
               lng: selectedCenter.longitude,
             }}
+            onCloseClick={() => {
+              setSelectedCenter(null);
+            }}
           >
-            <div>
-              <h4>{selectedCenter.name}</h4>
-              <h5>towards...</h5>
-              <h5>198</h5>
-              <p>2 min</p>
-            </div>
+            {/* <BusInfo /> */}
           </InfoWindow>
         )}
       </GoogleMap>
