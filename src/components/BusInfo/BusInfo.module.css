@@ -1,0 +1,11 @@
+.busItem {
+  background-color: red;
+  padding: 3px;
+  color: white;
+}
+
+.busInfo {
+  display: inline-block;
+  justify-content: space-between;
+  margin-left: 20px;
+}
