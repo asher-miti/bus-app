@@ -2,18 +2,16 @@ import React, { useState, useCallback, useRef, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import axios from "axios";
 
-import { Search, Locate, Header, Spinner } from "./components";
+import { Search, Locate, Header, Spinner, BusInfo } from "./components";
 import "./App.css";
 
 const url = "http://transportapi.com/v3/uk/places.json";
 const apiKey = process.env.REACT_APP_TRANSPORT_API_KEY;
 const apiId = process.env.REACT_APP_TRANSPORT_API_ID;
 
-// Map settings
-const libraries = ["places"];
 const mapContainerStyle = {
   width: "90vw",
-  height: "80vh",
+  height: "83vh",
   position: "absolute",
   top: "55%",
   right: "50%",
@@ -22,11 +20,20 @@ const mapContainerStyle = {
   transform: "translate(50%,-50%)",
 };
 
+const options = {
+  disableDefaultUI: true,
+  zoomControl: true,
+  streetViewControl: true,
+};
+
 // Settings for London on map initial render
 const center = { lat: 51.507351, lng: -0.12267 };
 
 const Map = () => {
   const [location, setLocation] = useState(center);
+  const [markers, setMarkers] = useState([]);
+  const [currentMarker, setCurrentMarker] = useState(null);
+  const mapRef = useRef();
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -42,21 +49,8 @@ const Map = () => {
 
       setMarkers([]);
 
-      const busStops = result.data.member;
-
-      console.log(busStops);
-
-      busStops.forEach((busStop) => {
-        // expand bounds for each marker
-
-        setMarkers((current) => [
-          ...current,
-          {
-            lat: busStop.latitude,
-            lng: busStop.longitude,
-            time: new Date(),
-          },
-        ]);
+      result.data.member.forEach((busStop) => {
+        setMarkers((current) => [...current, busStop]);
       });
     };
 
@@ -66,19 +60,13 @@ const Map = () => {
   // Loading Google maps with API key
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
+    libraries: ["places"],
   });
-
-  const [markers, setMarkers] = useState([]);
-
-  // Toggle pop up info window for each bus stop
-  const [selectedCenter, setSelectedCenter] = useState(null);
 
   const onMapClick = useCallback((event) => {
     setLocation({ lat: event.latLng.lat(), lng: event.latLng.lng() });
   }, []);
 
-  const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
@@ -86,6 +74,7 @@ const Map = () => {
   // Map zooms to location on search click
   const panTo = useCallback(({ lat, lng }) => {
     // GET THE MAP IN BOUNDS OF MARKERS!!!
+    // https://stackoverflow.com/questions/11454229/how-to-set-zoom-level-in-google-map
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(20);
   }, []);
@@ -94,7 +83,7 @@ const Map = () => {
   if (!isLoaded) return <Spinner />;
 
   return (
-    <div className="container">
+    <div>
       <Header />
       <Search panTo={panTo} />
       <Locate panTo={panTo} setLocation={setLocation} />
@@ -102,32 +91,27 @@ const Map = () => {
         mapContainerStyle={mapContainerStyle}
         zoom={12}
         center={location}
+        options={options}
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
         {markers.map((marker) => (
           <Marker
-            key={marker.time.toISOString()}
-            position={{ lat: marker.lat, lng: marker.lng }}
+            key={marker.atcocode}
+            position={{ lat: marker.latitude, lng: marker.longitude }}
             icon={{
               url: "https://img.icons8.com/emoji/48/000000/round-pushpin-emoji.png",
+              scaledSize: new window.google.maps.Size(40, 40),
             }}
-            onClick={() => {
-              setSelectedCenter(marker);
-            }}
+            onClick={() => setCurrentMarker(marker)}
           />
         ))}
-        {selectedCenter && (
+        {currentMarker && (
           <InfoWindow
-            position={{
-              lat: selectedCenter.latitude,
-              lng: selectedCenter.longitude,
-            }}
-            onCloseClick={() => {
-              setSelectedCenter(null);
-            }}
+            position={{ lat: currentMarker.latitude, lng: currentMarker.longitude }}
+            onCloseClick={() => setCurrentMarker(null)}
           >
-            {/* <BusInfo /> */}
+            <BusInfo busStopInfo={currentMarker} />
           </InfoWindow>
         )}
       </GoogleMap>

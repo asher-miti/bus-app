@@ -15,7 +15,7 @@ const Locate = ({ panTo, setLocation }) => {
   };
 
   return (
-    <button className="locate" onClick={locate}>
+    <button className={styles.locate} onClick={locate}>
       <img className={styles.compass} src={compass} alt="compass - locate me" />
     </button>
   );

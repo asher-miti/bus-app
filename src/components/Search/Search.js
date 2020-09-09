@@ -36,12 +36,19 @@ const Search = ({ panTo }) => {
         }}
       >
         <ComboboxInput
+          style={{
+            width: "250px",
+            padding: "8px 12px",
+            border: "2px solid grey",
+            borderRadius: "5px",
+            zIndex: "10",
+          }}
           value={value}
           onChange={(e) => {
             setValue(e.target.value);
           }}
           disabled={!ready}
-          placeholder="Search address..."
+          placeholder="Search..."
         />
         <ComboboxPopover>
           <ComboboxList>
