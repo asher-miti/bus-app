@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Firstly, thank you for viewing my project and giving me the opportunity to work on this over the last week, I enjoyed building this application and although I faced a lot of challenges throughout, I'm proud of what I was able to build.
 
-## Available Scripts
+My project is deployed and viewable at: or alternatively you can run this locally by running:
 
-In the project directory, you can run:
+<npm install> to install frontend dependencies
 
-### `npm start`
+<npm start> to load the dev server
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Technologies/Packages
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Built with React
+Packages used include: react-google maps, axios, reach/combobox, react-google-maps/api,use-places-autocomplete, CSS modules.
 
-### `npm test`
+My thought process for working on this project was to firstly, focus on the design and how I wanted the app to look and how I would go about achieving this goal thereafter. I spent the first hour looking for inspiration on the likes of dribble.com and looking at applications on the app store to get a good understanding of how intuitive a travel application can be.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once I had this plan put together and knew what I wanted to build, how to do it and how to structure the app, I began with actually building the project. I recently worked on an application using React and axios that dealt with multiple API's and endpoints so felt I had a fair understanding of how to approach this and extract the information to display the relevant data on the UI.
 
-### `npm run build`
+The way I tackled any uncertainty around building the application was through reading through a lot of documentation on both the Google Maps API and the Transport API, mixed with watching videos on YouTube & Udemy to further understand how to correctly work with API's in React, as well as working with Google Maps effectively.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Some of the challenges I faced included:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+1: Using different hooks with React and axios to access the correct information within the TransportAPI, and then translate that data into visual components that integrate with the Maps API. 2: Addressing some minor issues with responsiveness such as the table of data letting you know to scroll left/right on mobile 3: 1 or 2 minor issues with styling once deployed that did not seem to appear when running the project locally.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I feel given more time if I were to approach building this application long term, I would like to add a route planner for the quickest travel time between 2 points, as well as being able to add a "Favourites" tab where users can store their most used/favourite bus stops if this app were to be used regularly. A cool feature would also be allowing the application to receive updates directly from TFL on which services are affected or delayed due to traffic/accidents etc. or potentially being able to track a specific bus and it's entire route for easier journey planning.
 
-### `npm run eject`
+I'm still learning and would like to consistently improve my skill set and become as adept at my job as a Developer as quickly and efficiently as possible, hopefully within a company such as LiveSmart where, given my research, I feel the company is working on some incredibly exciting products and making a real impact in the industry, competing again more traditional services by the likes of Nuffield & Bupa.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Thanks again for viewing and I look forward to discussing this project in more detail.

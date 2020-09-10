@@ -10,7 +10,6 @@ const Spinner = () => {
         margin: "auto",
         display: "block",
         padding: "130px 0",
-        background: "none",
       }}
       alt="Loading"
     />

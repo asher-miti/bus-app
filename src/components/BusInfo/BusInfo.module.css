@@ -4,6 +4,12 @@
   color: white;
 }
 
+.busCard {
+  height: 170px;
+  width: 320px;
+  padding: 0;
+}
+
 .busInfo {
   display: inline-block;
   justify-content: space-between;
