@@ -8,6 +8,7 @@ import "./App.css";
 const url = "http://transportapi.com/v3/uk/places.json";
 const apiKey = process.env.REACT_APP_TRANSPORT_API_KEY;
 const apiId = process.env.REACT_APP_TRANSPORT_API_ID;
+const mapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const mapContainerStyle = {
   width: "90vw",
@@ -25,6 +26,8 @@ const options = {
   zoomControl: true,
   streetViewControl: true,
 };
+
+const libraries = ["places"];
 
 // Settings for London on map initial render
 const center = { lat: 51.507351, lng: -0.12267 };
@@ -59,8 +62,8 @@ const Map = () => {
 
   // Loading Google maps with API key
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries: ["places"],
+    googleMapsApiKey: mapsApiKey,
+    libraries,
   });
 
   const onMapClick = useCallback((event) => {
@@ -73,8 +76,6 @@ const Map = () => {
 
   // Map zooms to location on search click
   const panTo = useCallback(({ lat, lng }) => {
-    // GET THE MAP IN BOUNDS OF MARKERS!!!
-    // https://stackoverflow.com/questions/11454229/how-to-set-zoom-level-in-google-map
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(9);
   }, []);
