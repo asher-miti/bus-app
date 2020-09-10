@@ -1,10 +1,11 @@
 import React from "react";
 
+import logo from "../../../images/logo.png";
 import styles from "./Header.module.css";
 
 const Header = () => (
   <header className={styles.header}>
-    <h2 className={styles.logo}>Bus Times London</h2>
+    <img className={styles.logo} src={logo} alt="Bus Times London" />
   </header>
 );
 

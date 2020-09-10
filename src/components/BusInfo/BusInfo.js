@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 import styles from "./BusInfo.module.css";
 
@@ -7,8 +8,6 @@ const apiKey = process.env.REACT_APP_TRANSPORT_API_KEY;
 const apiId = process.env.REACT_APP_TRANSPORT_API_ID;
 const url = "https://transportapi.com/v3/uk/bus/stop";
 
-// Next bus is departing in {5} minutes, the next one after that is in {10}
-// Google directions => from current location to clicked bus stop (cool calucation)
 // maybe that would overcomplicate things, so you can do "3 to 4 miles per hour" and use that for measurment
 // and then use this distance (blow)
 //     { accuracy: 20, distance: 231 }
@@ -39,14 +38,24 @@ const BusInfo = ({ busStopInfo }) => {
     getBusTimes();
   }, [busStopInfo.atcocode]);
 
+  // function howLongTill(timeString) {
+  //   let current = new Date();
+  //   let today = current.getHours() * 60 + current.getMinutes();
+  //   let bus = timeString.split(":");
+  //   let h = parseFloat(bus[0]);
+  //   let m = parseFloat(bus[1]);
+
+  //   let n = h * 60 + m - today;
+  //   return n > 0 ? n + " min." : "gone";
+  // }
+
   // Get current time of day (only minutes) for calculating bus ETA
   const d = new Date();
   const n = d.getMinutes();
-  console.log(n);
 
   return (
-    <div>
-      <h5>{busStopInfo.name}</h5>
+    <div className={styles.busCard}>
+      <h5 className={styles.busInfoHeader}>{busStopInfo.name}</h5>
       <p>{busStopInfo.description}</p>
       {busList.all &&
         busList.all.map((departure, i) => (
@@ -56,14 +65,15 @@ const BusInfo = ({ busStopInfo }) => {
                 <span className={styles.busItem}>{departure.line}</span> <small>towards</small>{" "}
                 {departure.direction}
               </h6>
-              <h5 className={styles.busInfo}>
+              <h6 className={styles.busInfo}>
                 <strong>
-                  {departure.best_departure_estimate.split(":")[1] - n === 0
+                  {departure.best_departure_estimate.split(":")[1] - n < 0
+                    ? departure.best_departure_estimate.split(":")[1] - n + 60 + "min"
+                    : departure.best_departure_estimate.split(":")[1] - n === 0
                     ? "Due"
-                    : departure.best_departure_estimate.split(":")[1] - n}
+                    : departure.best_departure_estimate.split(":")[1] - n + "min"}
                 </strong>{" "}
-                min
-              </h5>
+              </h6>
             </span>
           </li>
         ))}

@@ -76,7 +76,7 @@ const Map = () => {
     // GET THE MAP IN BOUNDS OF MARKERS!!!
     // https://stackoverflow.com/questions/11454229/how-to-set-zoom-level-in-google-map
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(20);
+    mapRef.current.setZoom(9);
   }, []);
 
   if (loadError) return "Error loading maps";

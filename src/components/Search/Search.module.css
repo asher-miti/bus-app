@@ -11,3 +11,29 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.inputBox {
+  width: 300px;
+  padding: 9px 12px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 1024px) {
+  .search {
+    top: 11.5rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .inputBox {
+    width: 180px;
+    padding: 6px 10px;
+  }
+
+  .search {
+    top: 9rem;
+  }
+}

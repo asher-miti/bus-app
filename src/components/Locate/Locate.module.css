@@ -12,3 +12,25 @@
   right: 7rem;
   cursor: pointer;
 }
+
+/* Responsiveness */
+
+@media only screen and (max-width: 1024px) {
+  .locate {
+    top: 11rem;
+    right: 5.5rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .locate {
+    margin-top: 3px;
+    right: 2.8rem;
+    top: 8.7rem;
+  }
+
+  .compass {
+    height: 35px;
+    width: 35px;
+  }
+}
