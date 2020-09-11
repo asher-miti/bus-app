@@ -8,9 +8,6 @@ import "./App.css";
 const url = "http://transportapi.com/v3/uk/places.json";
 const apiKey = process.env.REACT_APP_TRANSPORT_API_KEY;
 const apiId = process.env.REACT_APP_TRANSPORT_API_ID;
-const mapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
-console.log(mapsApiKey);
 
 const mapContainerStyle = {
   width: "90vw",
@@ -40,6 +37,7 @@ const Map = () => {
   const [currentMarker, setCurrentMarker] = useState(null);
   const mapRef = useRef();
 
+  // Fetching TransportAPI data
   useEffect(() => {
     const fetchItems = async () => {
       const result = await axios.get(url, {
@@ -64,7 +62,7 @@ const Map = () => {
 
   // Loading Google maps with API key
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: mapsApiKey,
+    googleMapsApiKey: "AIzaSyCjpx1_4h2r8GcLcgbqn-V9ei5IpzCAmXc",
     libraries,
   });
 
