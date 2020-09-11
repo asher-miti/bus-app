@@ -65,6 +65,7 @@ const Map = () => {
   const { isLoaded, loadError } = useLoadScript({ googleMapsApiKey, libraries });
 
   const onMapClick = useCallback((event) => {
+    setCurrentMarker(null);
     setLocation({ lat: event.latLng.lat(), lng: event.latLng.lng() });
   }, []);
 
@@ -108,9 +109,13 @@ const Map = () => {
         {currentMarker && (
           <InfoWindow
             position={{ lat: currentMarker.latitude, lng: currentMarker.longitude }}
-            onCloseClick={() => setCurrentMarker(null)}
+            onCloseClick={() => {
+              setCurrentMarker(null);
+            }}
           >
-            <BusInfo busStopInfo={currentMarker} />
+            <>
+              <BusInfo busStopInfo={currentMarker} />
+            </>
           </InfoWindow>
         )}
       </GoogleMap>

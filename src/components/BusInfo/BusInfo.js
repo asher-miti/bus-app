@@ -34,34 +34,40 @@ const BusInfo = ({ busStopInfo }) => {
     getBusTimes();
   }, [busStopInfo.atcocode]);
 
-  // Get current time of day (only minutes) for calculating bus ETA
-  const d = new Date();
-  const n = d.getMinutes();
+  // Logic for calculating estimated time of arrival for buses
+  const calculateDueMinutes = (minutes) => {
+    const currentMinutes = new Date().getMinutes();
+
+    if (minutes - currentMinutes < 0) {
+      return minutes - currentMinutes + 60;
+    }
+
+    return minutes - currentMinutes;
+  };
 
   return (
     <div className={styles.busCard}>
       <h3>{busStopInfo.name}</h3>
       <p>{busStopInfo.description}</p>
       {busList.all &&
-        busList.all.map((departure, i) => (
-          <li style={{ listStyleType: "none" }} key={i}>
-            <span className={styles.busDetails}>
-              <h3 className={styles.busInfo}>
-                <span className={styles.busItem}>{departure.line}</span> <small>towards</small>{" "}
-                {departure.direction}
-              </h3>
-              <h3 className={styles.busInfo}>
-                <strong>
-                  {departure.best_departure_estimate.split(":")[1] - n < 0
-                    ? departure.best_departure_estimate.split(":")[1] - n + 60 + "min"
-                    : departure.best_departure_estimate.split(":")[1] - n === 0
-                    ? "Due"
-                    : departure.best_departure_estimate.split(":")[1] - n + "min"}
-                </strong>{" "}
-              </h3>
-            </span>
-          </li>
-        ))}
+        busList.all.map(({ line, direction, best_departure_estimate }, i) => {
+          const minutes = best_departure_estimate.split(":")[1];
+          const dueMinutes = calculateDueMinutes(minutes);
+
+          return (
+            <li style={{ listStyleType: "none" }} key={i}>
+              <span className={styles.busDetails}>
+                <h3 className={styles.busInfo}>
+                  <span className={styles.busItem}>{line}</span> <small>towards</small>
+                  {direction}
+                </h3>
+                <h3 className={styles.busInfo}>
+                  <strong>{dueMinutes ? `${dueMinutes} minutes` : "Due"}</strong>
+                </h3>
+              </span>
+            </li>
+          );
+        })}
     </div>
   );
 };
