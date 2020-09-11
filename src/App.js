@@ -10,6 +10,8 @@ const apiKey = process.env.REACT_APP_TRANSPORT_API_KEY;
 const apiId = process.env.REACT_APP_TRANSPORT_API_ID;
 const mapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
+console.log(mapsApiKey);
+
 const mapContainerStyle = {
   width: "90vw",
   height: "83vh",
