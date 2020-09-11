@@ -5,9 +5,15 @@
 }
 
 .busCard {
-  height: 170px;
+  height: 220px;
   width: 320px;
-  padding: 0;
+}
+
+.busDetails {
+  display: inline-block;
+  padding: 5px;
+  line-height: 25px;
+  margin-top: 10px;
 }
 
 .busInfo {

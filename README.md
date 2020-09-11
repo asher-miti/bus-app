@@ -19,10 +19,13 @@ The way I tackled any uncertainty around building the application was through re
 
 Some of the challenges I faced included:
 
-1: Using different hooks with React and axios to access the correct information within the TransportAPI, and then translate that data into visual components that integrate with the Maps API. 2: Addressing some minor issues with responsiveness such as the table of data letting you know to scroll left/right on mobile 3: 1 or 2 minor issues with styling once deployed that did not seem to appear when running the project locally.
+1: Using different hooks with React and axios to access the correct information within the TransportAPI, and then translate that data into visual components that integrate with the Maps API.
+2: Addressing some minor issues with responsiveness such as the table of data letting you know to scroll left/right on mobile
+3: 1 or 2 minor issues with styling once deployed that did not seem to appear when running the project locally.
+4: Faced a major issue upon deployment, receiving "For Development Purposes Only" error for Google Maps, this was the main challenge I faced right at the end and upon using Stack Overflow as well as contacting Google Support for further advice/info, I was able to solve this and it seems the issue was storing my apikey in a .env. file and transferring that over. However, in the process of solving this , I faced more challenges with parts of the application breaking and requiring new styling, + changes to the code structure. 5. Once I got the google maps working again on my deployed site, no markers were showing and I was receiving a "requested an insecure XMLHttpRequest endpoint" error,
 
 I feel given more time if I were to approach building this application long term, I would like to add a route planner for the quickest travel time between 2 points, as well as being able to add a "Favourites" tab where users can store their most used/favourite bus stops if this app were to be used regularly. A cool feature would also be allowing the application to receive updates directly from TFL on which services are affected or delayed due to traffic/accidents etc. or potentially being able to track a specific bus and it's entire route for easier journey planning.
 
-I'm still learning and would like to consistently improve my skill set and become as adept at my job as a Developer as quickly and efficiently as possible, hopefully within a company such as LiveSmart where, given my research, I feel the company is working on some incredibly exciting products and making a real impact in the industry, competing again more traditional services by the likes of Nuffield & Bupa.
+I'm still learning and would like to consistently improve my skill set and become as adept at my job as a Developer as quickly and efficiently as possible, hopefully within a company such as LiveSmart where, given my research, I feel the company is working on some incredibly exciting products and making a real impact in the industry, competing against more traditional services by the likes of Nuffield & Bupa.
 
 Thanks again for viewing and I look forward to discussing this project in more detail.

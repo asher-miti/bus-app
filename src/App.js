@@ -8,6 +8,7 @@ import "./App.css";
 const url = "http://transportapi.com/v3/uk/places.json";
 const apiKey = process.env.REACT_APP_TRANSPORT_API_KEY;
 const apiId = process.env.REACT_APP_TRANSPORT_API_ID;
+const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const mapContainerStyle = {
   width: "90vw",
@@ -61,10 +62,7 @@ const Map = () => {
   }, [location]);
 
   // Loading Google maps with API key
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCjpx1_4h2r8GcLcgbqn-V9ei5IpzCAmXc",
-    libraries,
-  });
+  const { isLoaded, loadError } = useLoadScript({ googleMapsApiKey, libraries });
 
   const onMapClick = useCallback((event) => {
     setLocation({ lat: event.latLng.lat(), lng: event.latLng.lng() });

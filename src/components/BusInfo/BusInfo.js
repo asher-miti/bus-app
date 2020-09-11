@@ -40,17 +40,17 @@ const BusInfo = ({ busStopInfo }) => {
 
   return (
     <div className={styles.busCard}>
-      <h6 className={styles.busInfoHeader}>{busStopInfo.name}</h6>
+      <h3>{busStopInfo.name}</h3>
       <p>{busStopInfo.description}</p>
       {busList.all &&
         busList.all.map((departure, i) => (
           <li style={{ listStyleType: "none" }} key={i}>
-            <span style={{ display: "inline-block" }}>
-              <h6 className={styles.busInfo}>
+            <span className={styles.busDetails}>
+              <h3 className={styles.busInfo}>
                 <span className={styles.busItem}>{departure.line}</span> <small>towards</small>{" "}
                 {departure.direction}
-              </h6>
-              <h6 className={styles.busInfo}>
+              </h3>
+              <h3 className={styles.busInfo}>
                 <strong>
                   {departure.best_departure_estimate.split(":")[1] - n < 0
                     ? departure.best_departure_estimate.split(":")[1] - n + 60 + "min"
@@ -58,7 +58,7 @@ const BusInfo = ({ busStopInfo }) => {
                     ? "Due"
                     : departure.best_departure_estimate.split(":")[1] - n + "min"}
                 </strong>{" "}
-              </h6>
+              </h3>
             </span>
           </li>
         ))}
