@@ -1,6 +1,6 @@
 Firstly, thank you for viewing my project and giving me the opportunity to work on this over the last week, I enjoyed building this application and although I faced a lot of challenges throughout, I'm proud of what I was able to build.
 
-My project is deployed and viewable at: or alternatively you can run this locally by running:
+My project is deployed and viewable at: bus-times-app.netlify.app or alternatively you can run this locally by running:
 
 <npm install> to install frontend dependencies
 
@@ -22,7 +22,7 @@ Some of the challenges I faced included:
 1: Using different hooks with React and axios to access the correct information within the TransportAPI, and then translate that data into visual components that integrate with the Maps API.
 2: Addressing some minor issues with responsiveness such as the table of data letting you know to scroll left/right on mobile
 3: 1 or 2 minor issues with styling once deployed that did not seem to appear when running the project locally.
-4: Faced a major issue upon deployment, receiving "For Development Purposes Only" error for Google Maps, this was the main challenge I faced right at the end and upon using Stack Overflow as well as contacting Google Support for further advice/info, I was able to solve this and it seems the issue was storing my apikey in a .env. file and transferring that over. However, in the process of solving this , I faced more challenges with parts of the application breaking and requiring new styling, + changes to the code structure. 5. Once I got the google maps working again on my deployed site, no markers were showing and I was receiving a "requested an insecure XMLHttpRequest endpoint" error,
+4: Faced a major issue upon deployment, receiving "For Development Purposes Only" error for Google Maps, this was the main challenge I faced right at the end and upon using Stack Overflow as well as contacting Google Support for further advice/info, I was able to solve this and it seems the issue was storing my apikey in a .env. file and transferring that over. However, in the process of solving this , I faced more challenges with parts of the application breaking and requiring new styling, + changes to the code structure. 5. Once I got the google maps working again on my deployed site, no markers were showing and I was receiving a "requested an insecure XMLHttpRequest endpoint" error, it turns out that overall I was having an error with gaining my api keys from the .env. file and finally fixed this so they are safely stored and not viewable to public.
 
 I feel given more time if I were to approach building this application long term, I would like to add a route planner for the quickest travel time between 2 points, as well as being able to add a "Favourites" tab where users can store their most used/favourite bus stops if this app were to be used regularly. A cool feature would also be allowing the application to receive updates directly from TFL on which services are affected or delayed due to traffic/accidents etc. or potentially being able to track a specific bus and it's entire route for easier journey planning.
 

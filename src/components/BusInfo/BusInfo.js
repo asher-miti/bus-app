@@ -62,7 +62,7 @@ const BusInfo = ({ busStopInfo }) => {
                   {direction}
                 </h3>
                 <h3 className={styles.busInfo}>
-                  <strong>{dueMinutes ? `${dueMinutes} minutes` : "Due"}</strong>
+                  <strong>{dueMinutes ? `${dueMinutes} min` : "Due"}</strong>
                 </h3>
               </span>
             </li>
