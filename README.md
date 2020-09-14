@@ -2,9 +2,9 @@ Firstly, thank you for viewing my project and giving me the opportunity to work 
 
 My project is deployed and viewable at: bus-times-app.netlify.app or alternatively you can run this locally by running:
 
-<npm install> to install frontend dependencies
+npm install to install frontend dependencies
 
-<npm start> to load the dev server
+npm start to load the dev server
 
 Technologies/Packages
 
